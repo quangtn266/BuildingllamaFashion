@@ -11,8 +11,10 @@ prices = []
 items = []
 brands = []
 descriptions = []
+imagebacks = []
+imagefronts = []
 
-for num in range(1, 100):
+for num in range(1, 2):
     if num == 1:
         url = url_original
     else:
@@ -20,33 +22,37 @@ for num in range(1, 100):
 
     response = requests.get(url_original)
     main_page_items = BeautifulSoup(response.text, 'html.parser')
-    products = main_page_items.find_all('div', class_ ='product details product-item-details')
+    products = main_page_items.find_all('div',class_="product-item-info")
 
     for i in products:
+        image_back = i.find('span', class_ = "product-image-container").find("img", class_="product-image-photo").get("data-catalog_image_hovering")
+        image_front = i.find('span', class_ = "product-image-container").find("img", class_="product-image-photo").get("src")
+        description = i.find("span", class_ = "product-image-container").find("img", class_="product-image-photo").get("alt")
+        if "nam" in description.lower():
+            items.append("male")
+        elif "nữ" in description.lower():
+            items.append("female")
         link = i.find("a", class_="product-item-link").get("href")
         brand = link.split("https://")[1].split("/")[0]
         price = i.find("span", class_="price-wrapper").get("data-price-amount")
-        data_product_sku = i.find("div").get("data-product-id")
+        data_product_sku = i.find('div', class_ ='price-box price-final_price').get("data-price-box")
 
         hrefs.append(link)
         prices.append(price)
         data_product_skus.append(data_product_sku)
         brands.append(brand)
+        descriptions.append(description)
+        imagebacks.append(image_back)
+        imagefronts.append(image_front)
 
-        onclicks = i.find("a").get("onclick")
-        item_list_names = onclicks[onclicks.index("item_list_name") + len("item_list_name"): onclicks.index("items")]
-        item_list_names = item_list_names.removeprefix('":"').replace('","', '')
-        items.append(item_list_names)
 
-        description = i.find("a")
-        descriptions.append(description.text)
-
-        #print(i.find("a"))
 
 
 basic_scrape = pd.DataFrame({
             'Link': hrefs,
             'Category_Type': items,
+            'Image Front': imagefronts,
+            'Image Back': imagebacks,
             'Product_ID': data_product_skus,
             'Description': descriptions,
             'Price': prices,
