@@ -58,3 +58,6 @@ sample_outputs = model.generate(tokenizer('', return_tensors="pt").input_ids.cud
                                 max_length = 100,
                                 top_p = 0.95,
                                 temperature = 1.0)
+
+model_dir="./results"
+model.save_pretrained(model_dir)
