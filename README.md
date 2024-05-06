@@ -1,6 +1,11 @@
-# RoutineScrapeData
+# Buidling llama Fashion
 
-A script scrapes Routine's data (a fashion data) in Vietnam.
+A end to end demo builds a llama model with fashion data (Routine) is a local branch in Vietnam.
+
+## Tasks
+1) A script scrapes Routine's data (a fashion data) in Vietnam.
+2) Building a llama model with fashion data.
+3) Testing model.
 
 ## Structure of data:
 1) 'Link': Link of item.
