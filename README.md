@@ -2,7 +2,7 @@
 
 A script scrapes Routine's data (a fashion data) in Vietnam.
 
-Structure of data:
+## Structure of data:
 1) 'Link': Link of item.
 2) 'Category_Type': Target gender,
 3) 'Image Front': Front Image link,
@@ -16,3 +16,15 @@ A csv format.
 
 ![image](https://github.com/quangtn266/RoutineScrapeData/assets/50879191/8316c3c9-2aed-46ac-9ff8-eb45993cced4)
 
+## Scraping data
+
+```
+python data/database_scrape.py
+```
+
+## Training llama
+- In the demo, I already use TinyPixel/small-llama2 (https://huggingface.co/TinyPixel/small-llama2)
+
+```
+python train.py
+```
