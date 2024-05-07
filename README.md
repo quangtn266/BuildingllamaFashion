@@ -33,3 +33,9 @@ python data/database_scrape.py
 ```
 python train.py
 ```
+
+## Inference
+
+```
+python inference.py
+```
