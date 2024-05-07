@@ -1,4 +1,3 @@
-import llama
 import torch
 import pandas as pd
 from torch.utils.data import Dataset, random_split
@@ -46,11 +45,11 @@ training_args = TrainingArguments(
 torch.cuda.empty_cache()
 
 
-Trainer(model = model,
+trainer = Trainer(model = model,
         args = training_args,
         eval_dataset = val_dataset,
         train_dataset = train_dataset,
-        data_collator = lambda data: {'input_ids': torch.stack([f[0] for f in data]), 'attention_mask': torch.stack([f[1] for f in data]), 'labels': torch.stack([f[0] for f in data])}).train()
+        data_collator = lambda data: {'input_ids': torch.stack([f[0] for f in data]), 'attention_mask': torch.stack([f[1] for f in data]), 'labels': torch.stack([f[0] for f in data])})
 
 sample_outputs = model.generate(tokenizer('', return_tensors="pt").input_ids.cuda(),
                                 do_sample = True,
@@ -59,5 +58,8 @@ sample_outputs = model.generate(tokenizer('', return_tensors="pt").input_ids.cud
                                 top_p = 0.95,
                                 temperature = 1.0)
 
-model_dir="./results"
-model.save_pretrained(model_dir)
+# Training model
+trainer.train()
+
+# Save model
+trainer.save_model("./results")
