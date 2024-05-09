@@ -47,4 +47,7 @@ python inference.py
 streamlit run app.py
 ```
 
+<img width="1481" alt="image" src="https://github.com/quangtn266/BuildingllamaFashion/assets/50879191/42cf0114-04bf-4f9e-bdd5-12236a98bdee">
+
+
 
