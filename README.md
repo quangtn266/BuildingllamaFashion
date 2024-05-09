@@ -6,6 +6,7 @@ A end to end demo builds a llama model with fashion data (Routine) is a local br
 1) A script scrapes Routine's data (a fashion data) in Vietnam.
 2) Building a llama model with fashion data.
 3) Testing model.
+4) Run application by streamlit.
 
 ## Structure of data:
 1) 'Link': Link of item.
@@ -39,3 +40,11 @@ python train.py
 ```
 python inference.py
 ```
+
+## Running application.
+
+```
+streamlit run app.py
+```
+
+
