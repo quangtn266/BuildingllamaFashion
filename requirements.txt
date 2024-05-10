@@ -2,4 +2,4 @@ transformers[torch]
 accelerate
 sentencepiece
 streamlit
-dotenv
+python-dotenv
